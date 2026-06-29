@@ -29,6 +29,9 @@ my-danang-project/
 │   ├── lib/                # Shared utility functions (also referred to as 'utils/')
 │   │   └── formatUtils.ts  # Currency (VND) and date formatters
 │   │
+│   ├── store/              # Zustand global state stores
+│   │   └── useExampleStore.ts  # Example: useFilterStore, useCartStore, etc.
+│   │
 │   └── types/              # TypeScript type definitions
 │       └── index.ts        # Interfaces: Place, FoodItem, etc.
 │
@@ -38,3 +41,56 @@ my-danang-project/
 ├── package.json            # Dependency manifest
 └── tsconfig.json           # TypeScript configuration
 ```
+
+## State Management
+
+This project uses [Zustand](https://zustand-demo.pmnd.rs/) for global client-side state.
+
+- All stores live in `src/store/`, one file per domain (e.g. `useFilterStore.ts`, `useCartStore.ts`)
+- Name each file after the hook it exports: `useXStore.ts`
+- Keep stores small and focused — one concern per store
+- Prefer local `useState` for UI-only state; only promote to Zustand when state needs to be shared across components
+
+## Design System
+
+All design tokens are defined in `src/app/globals.css`. Never use arbitrary Tailwind values — only use tokens from the system below.
+
+### Typography
+
+- **Body font**: Inter → `font-sans` class (default on `<body>`)
+- **Heading font**: Playfair Display → `font-heading` class
+- **Type scale** — only these sizes:
+
+| Class       | Size  |
+|-------------|-------|
+| `text-xs`   | 12px  |
+| `text-sm`   | 14px  |
+| `text-base` | 16px  |
+| `text-lg`   | 20px  |
+| `text-xl`   | 24px  |
+| `text-2xl`  | 32px  |
+| `text-3xl`  | 48px  |
+
+- **Line height**: `leading-normal` (1.5) for body text, `leading-tight` (1.2) for headings
+- **Font weight**: `font-normal` (400) · `font-medium` (500) · `font-semibold` (600) · `font-bold` (700)
+
+### Spacing
+
+- Base unit: **4px** — Tailwind's default scale (`p-1 = 4px, p-2 = 8px, p-4 = 16px, p-8 = 32px`)
+- All padding, margin, and gap must be multiples of 4px — no arbitrary values like `p-[13px]`
+- Common steps: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64px → `p-1` through `p-16`
+
+### Responsive Design (mobile-first)
+
+Travel sites are heavily mobile — design for mobile first, then scale up with breakpoint prefixes.
+
+| Prefix | Breakpoint | Target         |
+|--------|------------|----------------|
+| (base) | 0px        | Mobile         |
+| `sm:`  | 640px      | Large mobile   |
+| `md:`  | 768px      | Tablet         |
+| `lg:`  | 1024px     | Desktop        |
+| `xl:`  | 1280px     | Large desktop  |
+
+- Page container pattern: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
+- Never target mobile with `max-md:` overrides — write mobile styles first
