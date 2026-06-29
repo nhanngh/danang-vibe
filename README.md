@@ -1,42 +1,42 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Cấu trúc dự án
+## Project Structure
 
 ```
 my-danang-project/
-├── public/                 # Chứa tài nguyên tĩnh (không qua Webpack/Turbopack)
-│   ├── images/             # Ảnh tĩnh: cau-rong.jpg, mi-quang.png, logo.svg...
-│   └── fonts/              # Font chữ custom (nếu có)
+├── public/                 # Static assets served directly (not processed by Webpack/Turbopack)
+│   ├── images/             # Static images: cau-rong.jpg, mi-quang.png, logo.svg...
+│   └── fonts/              # Custom web fonts (if any)
 │
-├── src/                    # Thư mục gốc chứa toàn bộ source code
-│   ├── app/                # Nơi định nghĩa Routing và các Trang (Pages)
-│   │   ├── destinations/   # Route: /destinations (Danh lam thắng cảnh)
+├── src/                    # Root directory for all source code
+│   ├── app/                # Routing and page definitions (Next.js App Router)
+│   │   ├── destinations/   # Route: /destinations (Landmarks & attractions)
 │   │   │   └── page.tsx
-│   │   ├── food/           # Route: /food (Ẩm thực Đà Nẵng)
+│   │   ├── food/           # Route: /food (Da Nang cuisine)
 │   │   │   └── page.tsx
-│   │   ├── layout.tsx      # Layout gốc (Chứa Navbar, Footer dùng chung cho mọi trang)
-│   │   ├── page.tsx        # Trang chủ (Homepage)
-│   │   └── globals.css     # File CSS toàn cục (chứa setup Tailwind)
+│   │   ├── layout.tsx      # Root layout (shared Navbar & Footer for all pages)
+│   │   ├── page.tsx        # Homepage (/)
+│   │   └── globals.css     # Global stylesheet (Tailwind setup)
 │   │
-│   ├── components/         # Các mảnh ghép giao diện (UI components)
-│   │   ├── layout/         # Component bố cục: Navbar.tsx, Footer.tsx
-│   │   ├── sections/       # Các khối nội dung lớn: HeroSection.tsx, FeaturedPlaces.tsx
-│   │   └── ui/             # Component nhỏ, tái sử dụng: Button.tsx, Card.tsx
+│   ├── components/         # Reusable UI components
+│   │   ├── layout/         # Layout components: Navbar.tsx, Footer.tsx
+│   │   ├── sections/       # Page sections: HeroSection.tsx, FeaturedPlaces.tsx
+│   │   └── ui/             # Small reusable primitives: Button.tsx, Card.tsx
 │   │
-│   ├── constants/          # (Hoặc thư mục 'data/') Chứa dữ liệu tĩnh dạng mock data
-│   │   └── danangData.ts   # VD: Array chứa danh sách các cây cầu, món ăn, giá vé...
+│   ├── constants/          # Static mock data (also referred to as 'data/')
+│   │   └── danangData.ts   # Arrays of bridges, foods, ticket prices, etc.
 │   │
-│   ├── lib/                # (Hoặc thư mục 'utils/') Các hàm tiện ích dùng chung
-│   │   └── formatUtils.ts  # VD: Hàm format tiền tệ (VNĐ), format ngày tháng
+│   ├── lib/                # Shared utility functions (also referred to as 'utils/')
+│   │   └── formatUtils.ts  # Currency (VND) and date formatters
 │   │
-│   └── types/              # Định nghĩa kiểu dữ liệu (Rất quan trọng nếu dùng TypeScript)
-│       └── index.ts        # VD: interface Place, interface FoodType
+│   └── types/              # TypeScript type definitions
+│       └── index.ts        # Interfaces: Place, FoodItem, etc.
 │
-├── .env.local              # File chứa các biến môi trường (API keys, secret...)
-├── next.config.ts          # File cấu hình của Next.js
-├── tailwind.config.ts      # File cấu hình Tailwind CSS (màu sắc, font chữ riêng)
-├── package.json            # Quản lý thư viện
-└── tsconfig.json           # Cấu hình TypeScript
+├── .env.local              # Environment variables (API keys, secrets — never commit)
+├── next.config.ts          # Next.js configuration
+├── tailwind.config.ts      # Tailwind CSS configuration (custom colors, fonts)
+├── package.json            # Dependency manifest
+└── tsconfig.json           # TypeScript configuration
 ```
 
 ## Getting Started
@@ -57,7 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Path Aliases
 
-Dự án dùng `@/` làm alias cho thư mục `src/`:
+The `@/` alias maps to the `src/` directory:
 
 ```ts
 import { Place } from "@/types";
@@ -66,7 +66,7 @@ import Navbar from "@/components/layout/Navbar";
 
 ## Learn More
 
-To learn more about Next.js, take a look the following resources:
+To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
