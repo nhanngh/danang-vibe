@@ -1,0 +1,17 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export default async function FoodPage({
+  params,
+}: PageProps<"/[locale]/food">) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("FoodPage");
+
+  return (
+    <main className="flex flex-1 flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold font-heading leading-tight">{t("title")}</h1>
+      <p className="mt-4 text-lg text-text-muted">{t("subtitle")}</p>
+    </main>
+  );
+}

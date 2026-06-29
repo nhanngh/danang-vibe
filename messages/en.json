@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "Welcome to Da Nang",
+    "subtitle": "Explore the beauty of Vietnam's most livable city"
+  },
+  "DestinationsPage": {
+    "title": "Landmarks & Attractions",
+    "subtitle": "Explore the most beautiful places in Da Nang"
+  },
+  "FoodPage": {
+    "title": "Da Nang Cuisine",
+    "subtitle": "Enjoy the famous local specialties of Da Nang"
+  },
+  "Navigation": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "food": "Food"
+  }
+}

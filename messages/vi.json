@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "Chào mừng đến Đà Nẵng",
+    "subtitle": "Khám phá vẻ đẹp của thành phố đáng sống nhất Việt Nam"
+  },
+  "DestinationsPage": {
+    "title": "Danh lam thắng cảnh",
+    "subtitle": "Khám phá những địa điểm đẹp nhất tại Đà Nẵng"
+  },
+  "FoodPage": {
+    "title": "Ẩm thực Đà Nẵng",
+    "subtitle": "Thưởng thức những món ăn đặc sản nổi tiếng của Đà Nẵng"
+  },
+  "Navigation": {
+    "home": "Trang chủ",
+    "destinations": "Điểm đến",
+    "food": "Ẩm thực"
+  }
+}

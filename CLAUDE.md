@@ -80,6 +80,69 @@ All design tokens are defined in `src/app/globals.css`. Never use arbitrary Tail
 - All padding, margin, and gap must be multiples of 4px — no arbitrary values like `p-[13px]`
 - Common steps: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64px → `p-1` through `p-16`
 
+## Internationalization (i18n)
+
+This project uses [next-intl](https://next-intl.dev) with locales `vi` (default) and `en`.
+
+### Message file structure
+
+Split translations by feature into separate files — never put everything in one file.
+
+```
+messages/
+├── common.json      # Shared across pages: nav, buttons, errors
+├── home.json        # Homepage only
+├── destinations.json
+├── food.json
+└── booking.json     # Future booking flow
+```
+
+Each file maps to a namespace passed to `getTranslations('Home')` or `useTranslations('Common')`.
+
+### Key naming
+
+Name keys by **meaning**, not content. The key must survive a copy change.
+
+```json
+// Good — key describes intent
+{ "booking": { "confirmButton": "Confirm your booking" } }
+
+// Bad — key is the content; breaks when copy changes
+{ "confirmYourBooking": "Confirm your booking" }
+```
+
+### URL strategy
+
+Use `localePrefix: 'as-needed'` (current setting): default locale (`vi`) has no prefix, English gets `/en/`.
+
+- `/destinations` → tiếng Việt
+- `/en/destinations` → English
+
+For SEO, add `hreflang` alternate links in the root layout so Google can index both language versions:
+
+```tsx
+// app/[locale]/layout.tsx
+export async function generateMetadata({ params }: LayoutProps<'/[locale]'>) {
+  const { locale } = await params;
+  return {
+    alternates: {
+      languages: {
+        'vi': '/destinations',
+        'en': '/en/destinations',
+      },
+    },
+  };
+}
+```
+
+### Beyond text: dates, numbers, and locale-specific content
+
+Don't only translate strings — adapt formatting to locale:
+
+- **Dates**: use `next-intl`'s `useFormatter` — `vi` renders `dd/MM/yyyy`, `en` renders `MM/dd/yyyy`
+- **Currency**: VND for `vi`, USD or localized for `en` — use `formatUtils.ts` and pass locale
+- **Images/content**: hero images or featured items can differ by locale — store locale variants in `danangData.ts` if needed
+
 ### Responsive Design (mobile-first)
 
 Travel sites are heavily mobile — design for mobile first, then scale up with breakpoint prefixes.
